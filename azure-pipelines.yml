@@ -25,18 +25,3 @@ stages:
         repository: 'arjitks77/azure'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
-
-- stage: dockerize
-  displayName: pushing image to ACR
-  jobs:
-  - job: containerize
-    displayName: containerize
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-    - task: Docker@2
-      inputs:
-        containerRegistry: 'arjitks77.azurecr.io'
-        repository: 'new'
-        command: 'buildAndPush'
-        Dockerfile: '**/Dockerfile'
