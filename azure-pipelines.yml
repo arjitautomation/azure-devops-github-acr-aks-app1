@@ -23,6 +23,6 @@ stages:
     - task: Docker@2
       inputs:
         containerRegistry: 'dockerhub'
-        repository: 'azure'
+        repository: 'arjitks77/azure'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
