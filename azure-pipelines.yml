@@ -1,5 +1,6 @@
 # Docker
 
+
 # Build a Docker image
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
@@ -28,9 +29,14 @@ stages:
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
 
-    - task: Docker@2
-      inputs:
-        containerRegistry: 'arjitks'
-        repository: 'new'
-        command: 'buildAndPush'
-        Dockerfile: '**/Dockerfile'    
+- stage: dockerize
+  displayName: pushing image to ACR
+  
+  steps:
+
+  - task: Docker@2
+    inputs:
+      containerRegistry: 'arjitks'
+      repository: 'new'
+      command: 'buildAndPush'
+      Dockerfile: '**/Dockerfile'
