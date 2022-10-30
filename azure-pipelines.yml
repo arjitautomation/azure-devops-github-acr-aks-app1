@@ -28,12 +28,15 @@ stages:
 
 - stage: dockerize
   displayName: pushing image to ACR
-  pool:
+  jobs:
+  - job: containerize
+    displayName: containerize
+    pool:
       vmImage: ubuntu-latest
-  steps:
-  - task: Docker@2
-    inputs:
-      containerRegistry: 'arjitks'
-      repository: 'new'
-      command: 'buildAndPush'
-      Dockerfile: '**/Dockerfile'
+    steps:
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'arjitks'
+        repository: 'new'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
