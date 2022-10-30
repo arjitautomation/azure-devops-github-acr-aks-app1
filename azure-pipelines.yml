@@ -10,7 +10,6 @@ resources:
 variables:
   - group: variables1
   - name: vm
-    tag: '$(Build.BuildId)' 
 
 stages:
 - stage: Build
