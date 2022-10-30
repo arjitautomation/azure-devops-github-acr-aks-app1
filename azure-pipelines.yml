@@ -8,7 +8,9 @@ resources:
 - repo: self
 
 variables:
-  tag: '$(Build.BuildId)'
+  - group: variables1
+  - name: vm
+    tag: '$(Build.BuildId)' 
 
 stages:
 - stage: Build
@@ -17,7 +19,7 @@ stages:
   - job: Build
     displayName: Build
     pool:
-      vmImage: ubuntu-latest
+      vmImage: ${vm}
     steps:
     - task: Docker@2
       inputs:
