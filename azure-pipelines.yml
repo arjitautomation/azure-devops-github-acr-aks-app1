@@ -36,7 +36,7 @@ stages:
     steps:
     - task: Docker@2
       inputs:
-        containerRegistry: 'arjitks'
-        repository: 'arjitks/new'
+        containerRegistry: 'arjitks77.azurecr.io'
+        repository: 'new'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
