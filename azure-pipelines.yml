@@ -31,9 +31,9 @@ stages:
 
 - stage: dockerize
   displayName: pushing image to ACR
-  
+  pool:
+      vmImage: ubuntu-latest
   steps:
-
   - task: Docker@2
     inputs:
       containerRegistry: 'arjitks'
