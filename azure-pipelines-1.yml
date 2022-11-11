@@ -33,3 +33,15 @@ stages:
         repository: 'arjitks77/azure'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
+
+    - task: aquasecScanner@4
+      inputs:
+        image: 'arjitks77/azure'
+        scanType: 'local'
+        register: false
+        hideBase: false
+        showNegligible: false
+        windowsScannerVersion: '6.5.0'
+        registry: 'arjitks77/azure'
+        connection: 'aqua'
+        caCertificates: true
