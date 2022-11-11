@@ -9,7 +9,7 @@ resources:
 
 variables:
   - group: variables1
-  - name: vm
+  - name: ubuntu-latest
 
 stages:
 - stage: Build
@@ -26,3 +26,14 @@ stages:
         repository: 'arjitks77/azure'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
+
+    - task: aquasecScanner@4
+      inputs:
+        image: 'azure:93'
+        scanType: 'local'
+        register: false
+        hideBase: false
+        showNegligible: false
+        windowsScannerVersion: '6.5.0'
+        registry: 'arjitks77/azure'
+        connection: 'aqua'
