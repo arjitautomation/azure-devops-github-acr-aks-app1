@@ -36,7 +36,7 @@ stages:
 
     - task: aquasecScanner@4
       inputs:
-        image: 'arjitks77/azure'
+        image: 'azure:93'
         scanType: 'local'
         register: false
         hideBase: false
@@ -45,3 +45,6 @@ stages:
         registry: 'arjitks77/azure'
         connection: 'aqua'
         caCertificates: true
+        scanMalware: true
+        showWillNotFix: true
+    
