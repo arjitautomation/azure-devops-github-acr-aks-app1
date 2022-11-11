@@ -43,7 +43,7 @@ stages:
         showNegligible: false
         windowsScannerVersion: '6.5.0'
         registry: 'arjitks77/azure'
-        connection: 'aqua''
+        connection: 'aqua'
         caCertificates: true
         scanMalware: true
         showWillNotFix: true
