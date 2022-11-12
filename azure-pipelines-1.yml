@@ -29,7 +29,7 @@ stages:
           $(tag)
     - task: aquasecScanner@4
       inputs:
-        image: 'arjitks77/azure:$(tag)'
+        image: 'azure:$(tag)'
         scanType: 'local'
         register: false
         hideBase: false
