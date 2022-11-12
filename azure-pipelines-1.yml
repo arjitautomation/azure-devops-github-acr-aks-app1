@@ -33,7 +33,10 @@ stages:
         repository: 'arjitks77/azure'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
-
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'dockerhub'
+        command: 'login'
     - task: aquasecScanner@4
       inputs:
         image: 'azure:93'
