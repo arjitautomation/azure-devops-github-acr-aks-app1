@@ -30,7 +30,7 @@ stages:
     - task: aquasecScanner@4
       inputs:
         image: 'azure:$(tag)'
-        scanType: 'local'
+        scanType: 'hosted'
         register: false
         hideBase: false
         showNegligible: false
