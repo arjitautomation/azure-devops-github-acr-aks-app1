@@ -13,37 +13,32 @@ variables:
 
 stages:
 - stage: Build
-  displayName: Build image
+  displayName: Build stage
   jobs:
   - job: Build
     displayName: Build
     pool:
       vmImage: ubuntu-latest
     steps:
+    - task: CmdLine@2
+      inputs:
+        script: |
+          sudo apt-get install wget apt-transport-https gnupg lsb-release
+          wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
+          echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
+          sudo apt-get update
+          sudo apt-get install trivy
     - task: Docker@2
-      displayName: Build an image
+      displayName: Build docker image
       inputs:
         command: build
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: |
           $(tag)
-    - task: aquasecScanner@4
+    - task: Bash@3
+      displayName: trivy scan
       inputs:
-        image: 'azure:$(tag)'
-        scanType: 'hosted'
-        register: false
-        hideBase: false
-        showNegligible: false
-        windowsScannerVersion: '6.5.0'
-        registry: 'arjitks77/azure'
-        connection: 'aqua'
-        caCertificates: true
-        scanMalware: true
-        showWillNotFix: true
- 
-    - task: Docker@2
-      inputs:
-        containerRegistry: 'dockerhub'
-        command: 'login'
-    
+        targetType: 'inline'
+        script: 'trivy image arjitks:$(tag)'
+
     
