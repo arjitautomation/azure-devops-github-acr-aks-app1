@@ -39,6 +39,6 @@ stages:
       displayName: trivy scan
       inputs:
         targetType: 'inline'
-        script: 'docker images'
+        script: 'trivy image node:18'
 
     
