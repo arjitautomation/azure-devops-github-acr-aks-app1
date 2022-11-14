@@ -39,6 +39,6 @@ stages:
       displayName: trivy scan
       inputs:
         targetType: 'inline'
-        script: 'trivy image arjitks77 / azure$(tag)'
+        script: 'trivy image arjitks77 / azure:$(tag)'
 
     
