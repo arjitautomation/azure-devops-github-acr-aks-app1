@@ -43,7 +43,7 @@ stages:
     - task: Bash@3
       displayName: trivy scan
       inputs:
-        targetType: 'inline'
-        script: 'trivy image azure:$(tag)'
-
+        script: |
+          trivy image --exit-code 0 --severity LOW,MEDIUM azure:$(tag)
+          trivy image --exit-code 1 --severity HIGH,CRITICAL azure:$(tag)
     
