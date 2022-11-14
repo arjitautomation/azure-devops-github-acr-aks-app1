@@ -36,6 +36,11 @@ stages:
         command: 'build'
         Dockerfile: '**/Dockerfile'
     - task: Bash@3
+      displayName: docker images list
+      inputs:
+        targetType: 'inline'
+        script: 'docker images'
+    - task: Bash@3
       displayName: trivy scan
       inputs:
         targetType: 'inline'
